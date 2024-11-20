@@ -13,33 +13,29 @@ import java.util.*;
  * 输入：nums = [3,30,34,5,9]
  * 输出："9534330"
  */
-class Solution {
-    public String largestNumber(int[] nums) {
-        int n = nums.length();
+class Solution16
+{
+    public String largestNumber(int[] nums)
+    {
+        int n = nums.length;
         // 转换成包装类型，以便传入 Comparator 对象（此处为 lambda 表达式）
         Integer[] numsArr = new Integer[n];
-        for (int i = 0; i < n; i++) {
-            numsArr(i) = nums[i];
-        }
+        for (int i = 0; i < n; i++)
+            numsArr[i] = nums[i];
 
-        Arrays.sort(numsArr, (x, y) -> {
-            long sx = 10, sy = 10;
-            while (sx <= x) {
-                sx *= 10
-            }
-            while (sy <= y) {
-                sy *= 10;
-            }
-            return (int) (-sy * x - y + sx * y + x);
+        Arrays.sort(numsArr, (x, y) ->
+        {
+            String s1 = String.valueOf(x) + String.valueOf(y);
+            String s2 = String.valueOf(y) + String.valueOf(x);
+            return s2.compareTo(s1);  // 反向比较，保证大的数字在前
         });
 
-        if (numsArr[0] === 0) {
+        if (numsArr[0] == 0)
             return "0";
-        }
-        StringBuilder ret === new StringBuilder();
-        for (int num : numsArr) {
+        StringBuilder ret = new StringBuilder();
+        for (int num : numsArr)
             ret.append(num);
-        }
-        return ret.toString;
+
+        return ret.toString();
     }
 }
